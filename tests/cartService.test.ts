@@ -6,18 +6,22 @@ describe('Cart Service', () => {
     expect(cartId).toBeDefined();
 
     let items = addItem(cartId, 'SKU1', 2);
-    expect(items.length).toBe(1);
+    expect(items).not.toBeNull();
+    expect(items!.length).toBe(1);
     items = addItem(cartId, 'SKU1', 1);
-    expect(items[0].quantity).toBe(3);
+    expect(items![0].quantity).toBe(3);
 
     items = addItem(cartId, 'SKU2', 1);
-    expect(items.length).toBe(2);
+    expect(items).not.toBeNull();
+    expect(items!.length).toBe(2);
 
     items = removeItem(cartId, 'SKU1');
-    expect(items.find(i => i.sku === 'SKU1')).toBeUndefined();
+    expect(items).not.toBeNull();
+    expect(items!.find(i => i.sku === 'SKU1')).toBeUndefined();
 
     const details = getCartDetails(cartId);
-    expect(details.items.length).toBe(1);
+    expect(details).not.toBeNull();
+    expect(details!.items.length).toBe(1);
   });
 
   it('rejects expired carts', () => {

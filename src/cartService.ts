@@ -40,7 +40,7 @@ export function removeItem(cartId: string, sku: string) {
 export function checkoutCart(cartId: string): boolean {
   const cart = getCart(cartId);
   if (!cart) return false;
-  delete cart.items; // simple "finalize"
+  cart.items = []; // simple "finalize"
   saveCart(cart);
   return true;
 }
